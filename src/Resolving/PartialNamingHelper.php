@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace NamelessCoder\FluidPatternEngine\Resolving;
 
 use PatternLab\Config;
@@ -22,14 +23,19 @@ class PartialNamingHelper
         $parts = array_map('ucfirst', explode('-', $patternName));
         $type = array_shift($parts);
         switch ($type) {
+            case 'principles':
+            case 'components':
+            case 'features':
             case 'Atoms':
             case 'Molecules':
             case 'Organisms':
                 return $directory . DIRECTORY_SEPARATOR . 'Resources/Private/Partials/' . $this->determinePatternSubPath($patternName) . '.html';
                 break;
+            case 'templates':
             case 'Templates':
                 return $directory . DIRECTORY_SEPARATOR . 'Resources/Private/' . $this->determinePatternSubPath($patternName) . '.html';
                 break;
+            case 'applications':
             case 'Pages':
                 return $directory . DIRECTORY_SEPARATOR . 'Resources/Private/Templates/Page/' . implode('/', $parts) . '.html';
                 break;
@@ -63,6 +69,7 @@ class PartialNamingHelper
         }
         return $patternName;
     }
+
     public function determinePatternCleanName(string $patternName): string
     {
         $configuration = PatternData::get();
