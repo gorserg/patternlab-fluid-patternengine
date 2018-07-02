@@ -24,8 +24,8 @@ class PartialNamingHelper
         $type = array_shift($parts);
         switch ($type) {
             case 'Principles':
+            case 'Basics':
             case 'Components':
-            case 'Features':
             case 'Atoms':
             case 'Molecules':
             case 'Organisms':
@@ -34,6 +34,7 @@ class PartialNamingHelper
             case 'Templates':
                 return $directory . DIRECTORY_SEPARATOR . 'Resources/Private/' . $this->determinePatternSubPath($patternName) . '.html';
                 break;
+            case 'Features':
             case 'Applications':
             case 'Pages':
                 return $directory . DIRECTORY_SEPARATOR . 'Resources/Private/Templates/Page/' . implode('/', $parts) . '.html';
@@ -41,7 +42,7 @@ class PartialNamingHelper
             default:
                 throw new \RuntimeException(
                     sprintf(
-                        'The pattern type "%s" (implied from "%s") is unknown. (v.0.0.1)',
+                        'The pattern type "%s" (implied from "%s") is unknown.',
                         $type,
                         $originalPatternName
                     )
