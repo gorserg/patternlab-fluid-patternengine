@@ -18,10 +18,10 @@ class PatternLabTemplatePaths extends TemplatePaths
 
     public function getLayoutPathAndFilename($layoutName = 'default')
     {
-        print 'layoutName1 = $layoutName\n';
+        print "layoutName1 = $layoutName\n";
         // drop prefix (layouts-page-1col -> page-1col)
         $layoutName = str_replace('layouts-', '', $layoutName);
-        print 'layoutName2 = $layoutName\n';
+        print "layoutName2 = $layoutName\n";
 
         $paths = $this->getLayoutRootPaths();
 
@@ -48,7 +48,7 @@ class PatternLabTemplatePaths extends TemplatePaths
         if (preg_match($shortNameRegex, $partialName, $matches) && $patternDirName = $this->searchPatternDirByShortNameDir($matches[1])) {
             $partialName = $this->searchPatternsFullNameByShortNameRecursive($patternDirName, $matches[2]);
         }
-        print 'partialName = $partialName\n';
+        print "partialName = $partialName\n";
         return $partialName;
     }
 
