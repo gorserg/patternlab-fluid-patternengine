@@ -88,4 +88,23 @@ class PartialNamingHelper
         }
         return $patternName;
     }
+
+    public function getPatternConfiguration(string $patternName)
+    {
+        $configuration = PatternData::get();
+        foreach ($configuration as $patternConfiguration) {
+            if ($patternConfiguration['category'] === 'pattern') {
+                if (
+                    $patternConfiguration['name'] === $patternName
+                    || $patternConfiguration['path'] === $patternName
+                    || $patternConfiguration['nameDash'] === $patternName
+                    || $patternConfiguration['nameClean'] === $patternName
+                    || $patternConfiguration['partial'] === $patternName
+                ) {
+                    return $patternConfiguration;
+                }
+            }
+        }
+        return false;
+    }
 }
